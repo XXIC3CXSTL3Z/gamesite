@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  background: black;
+  overflow: hidden;
+}
+
+#game {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+#background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#hotspots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hotspot {
+  position: absolute;
+  cursor: pointer;
+  /* DEBUG: uncomment to see hitboxes */
+  /* background: rgba(255,0,0,0.2); */
+}
+
+#overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
