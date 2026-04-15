@@ -9,6 +9,9 @@ body {
   width: 100vw;
   height: 100vh;
   background: #222;
+  background-image: url("assets/bg.png");
+  background-repeat: repeat;     /* THIS makes it tile */
+  background-size: auto;         /* keeps original tile size */
 }
 
 #background {
