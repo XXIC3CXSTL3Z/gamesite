@@ -6,11 +6,25 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="game">
-    <!-- <img id="bg" src="https://picsum.photos/1200/800" /> -->
-    <div id="hotspots"></div>
+  <audio id="bgm" autoplay muted loop playsinline preload="auto">
+    <source src="assets/intro.mp3" type="audio/mpeg">
+  </audio>
+
+  <div id="lobby">
+    <h1>Lobby</h1>
+    <button id="startBtn">
+      <svg class="btnText" viewBox="0 0 600 80" aria-label="Do you wish to enter?">
+        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+          Do you wish to enter?
+        </text>
+      </svg>
+    </button>
   </div>
 
-  <script src="game.js"></script>
+  <script>
+      const bgm = document.getElementById("bgm");
+      bgm.muted = false;
+      bgm.play().catch(() => {});
+  </script>
 </body>
 </html>

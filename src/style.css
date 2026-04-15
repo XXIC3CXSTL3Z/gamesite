@@ -1,23 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@400..900&display=swap');
+
+html {
+	image-rendering: pixelated;
+}
+
 body {
   margin: 0;
   background: black;
   overflow: hidden;
 }
 
-#game {
+#lobby {
   position: relative;
   width: 100vw;
   height: 100vh;
   background: #222;
   background-image: url("assets/bg.png");
   background-repeat: repeat;     /* THIS makes it tile */
-  background-size: auto;         /* keeps original tile size */
+  background-size: 256px 256px;         /* keeps original tile size */
 }
 
 #background {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+#startBtn {
+  background: radial-gradient(circle at center, #0a0a0a, #000000);
+  border: 2px solid #005577;
+  padding: 15px 40px;
+  cursor: pointer;
+
+  box-shadow:
+    0 0 10px #001a33,
+    inset 0 0 10px #000000;
+
+  transition: all 0.2s ease;
+  filter: contrast(120%) brightness(110%);
+
+  /* remove font styling here since SVG handles text */
+}
+
+/* SVG container */
+.btnText {
+  width: 420px;
+  height: 60px;
+  display: block;
+}
+
+/* THIS replaces your original text styling */
+.btnText text {
+  font-family: "Cardo", serif;
+  font-size: 32px;
+  letter-spacing: 2px;
+
+  fill: #00aaff;
+
+  text-rendering: geometricPrecision;
+
+  filter:
+    drop-shadow(0 0 5px #00aaff)
+    drop-shadow(0 0 10px #0077ff)
+    drop-shadow(0 0 20px #003366);
+}
+
+/* Hover */
+#startBtn:hover .btnText text {
+  fill: #66ccff;
+
+  filter:
+    drop-shadow(0 0 10px #00ccff)
+    drop-shadow(0 0 20px #0099ff)
+    drop-shadow(0 0 30px #003366);
+}
+
+#startBtn:hover {
+  border-color: #00aaff;
+  box-shadow:
+    0 0 15px #002244,
+    inset 0 0 15px #000000;
+  transform: scale(1.05);
+}
+
+/* Active */
+#startBtn:active {
+  transform: scale(0.98);
+  box-shadow:
+    0 0 5px #001122,
+    inset 0 0 20px #000000;
 }
 
 #hotspots {
