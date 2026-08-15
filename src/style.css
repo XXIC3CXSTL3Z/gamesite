@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
 
 html {
 	image-rendering: pixelated;
@@ -15,10 +16,15 @@ body {
   position: relative;
   width: 100vw;
   height: 100vh;
+
   background: #222;
   background-image: url("assets/bg.png");
-  background-repeat: repeat;     /* THIS makes it tile */
-  background-size: 256px 256px;         /* keeps original tile size */
+  background-repeat: repeat;
+  background-size: 256px 256px;
+
+  display: flex;
+  align-items: center;      /* vertical center */
+  justify-content: center;  /* horizontal center */
 }
 
 #background {
@@ -39,14 +45,15 @@ body {
 
   transition: all 0.2s ease;
   filter: contrast(120%) brightness(110%);
+  display: block;
 
-  /* remove font styling here since SVG handles text */
+  /* REMOVE THIS */
+  /* height: 50%; */
 }
 
-/* SVG container */
 .btnText {
-  width: 420px;
-  height: 60px;
+  width: 620px;   /* match your big SVG */
+  height: auto;
   display: block;
 }
 
@@ -112,4 +119,87 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
+}
+
+/* ---- page1: the scanned letter ---- */
+
+body.letterPage {
+  background: #000;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#scan {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 60px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#sheet {
+  position: relative;
+  width: min(780px, 94vw);
+  min-height: 1000px;
+  box-sizing: border-box;
+
+  background-image: url("assets/paper.png");
+  background-size: cover;
+  background-position: center;
+  image-rendering: auto;
+
+  transform: rotate(-0.45deg);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.95),
+    0 0 140px rgba(0, 0, 0, 0.85);
+}
+
+#ink {
+  padding: 11% 12% 9%;
+  transform: rotate(0.25deg);
+
+  font-family: "Caveat", "Segoe Script", cursive;
+  font-size: clamp(21px, 2.5vw, 30px);
+  line-height: 1.75;
+  color: #14161f;
+
+  /* let the paper grain come through the strokes, like real ink */
+  mix-blend-mode: multiply;
+  filter: blur(0.2px);
+}
+
+#ink p {
+  margin: 0 0 1.15em;
+  text-indent: 1.2em;
+}
+
+#ink .salutation,
+#ink .signoff,
+#ink .sign {
+  text-indent: 0;
+}
+
+#ink .salutation {
+  margin-bottom: 1.6em;
+}
+
+#ink .signoff {
+  margin-top: 1.8em;
+}
+
+#ink .sign {
+  margin-top: 0.6em;
+  text-align: right;
+  font-size: 1.25em;
+}
+
+#vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center,
+              rgba(0, 0, 0, 0) 35%,
+              rgba(0, 0, 0, 0.55) 85%,
+              rgba(0, 0, 0, 0.85) 100%);
 }

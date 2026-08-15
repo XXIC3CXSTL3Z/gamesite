@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="letterPage">
+  <div id="scan">
+    <div id="sheet">
+      <div id="ink">
+        <p class="salutation">To whoever finds this,</p>
+
+        <p>I do not know how many days it has been. There is no sun down here to
+          count them by, only the lamp in the wall that never dims and never warms.</p>
+
+        <p>They call me a princess still. I can hear them saying it, far above,
+          through the stone. Yet I don't feel treated as such, feeling confined to
+          this hell-adjacent room.</p>
+
+        <p>The room is strange. It is a perfect square. There is nothing for
+          myself except a table, a kot and a reinforced titanium door to remind
+          me that escape is a foregone fantasy.</p>
+
+        <p>There is a sound in the walls like rain falling somewhere very far away,
+          and it does not stop. It should be impossible, given the depth of this
+          room in the earth.</p>
+
+        <p>If you are reading this, you are already deeper than anyone should be.
+          Do not come further down to look for me. Whatever answers when you call my
+          name in these caves, it will not be me.</p>
+
+        <p class="signoff">Go back up.<br>Go back up while the stair is still behind you.</p>
+
+        <p class="sign">&mdash; A.</p>
+      </div>
+    </div>
+    <div id="vignette"></div>
+  </div>
+
+  <script>
+    // looping white noise, generated rather than loaded from a file
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    const ctx = new AudioCtx();
+
+    const buffer = ctx.createBuffer(1, ctx.sampleRate * 3, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < data.length; i++) {
+      data[i] = Math.random() * 2 - 1;
+    }
+
+    const source = ctx.createBufferSource();
+    source.buffer = buffer;
+    source.loop = true;
+
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0, ctx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.07, ctx.currentTime + 2.5);
+
+    source.connect(gain).connect(ctx.destination);
+    source.start();
+
+    // browsers block audio until the page has been interacted with
+    if (ctx.state === "suspended") {
+      const resume = () => ctx.resume();
+      document.addEventListener("click", resume, { once: true });
+      document.addEventListener("keydown", resume, { once: true });
+    }
+  </script>
+</body>
+</html>
